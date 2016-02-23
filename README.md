@@ -4,4 +4,4 @@ Hi! I just made this repo recently, so there isn't much here yet. A short list o
 * [Clickbait Generator](https://github.com/SimonAnguish/My-Projects/tree/master/Python/Clickbait-Generator "Clickbait Generator")
 
 ### Java
-* [Arena](https://github.com/SimonANguish/My-Projects/tree/master/Java/Arena "Arena")
+* [Arena](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Arena "Arena")
