@@ -1,0 +1,77 @@
+<style>
+.outter-box {
+	width: 40em;
+	height: 30em;
+	background: #0D1B2B;
+	border-radius: 8px;
+	border: 1px solid #9E9E9E;
+	margin: 2em auto;
+}
+
+.top-bar {
+	background: #DEDEDE;
+	height: 14px;
+	padding: 4px 10px;
+	border-radius: 6px 6px 0 0;
+	margin: 0 0 .25em 0;
+}
+
+.circle {
+	width: 14px;
+	height: 14px;
+	border-radius: 50px;
+	display: inline-block;
+	margin: 0 1px;
+}
+
+#exit {
+	background: red;
+}
+
+#mini {
+	background: orange;
+}
+
+#full {
+	background: green;
+}
+
+code {
+	color: #E1E6DA;
+	font-family: "Menlo-Regular";
+	font-size: .75em;
+	margin: .5em;
+}
+
+code:after {
+	content: "\a";
+	white-space: pre;
+}
+
+.in-one {
+	margin: 2.5em;
+}
+
+.in-two {
+	margin: 4.5em;
+}
+</style>
+
+<div class='outter-box'>
+	<div class='top-bar'>
+		<span class='circle' id='exit'></span>
+		<span class='circle' id='mini'></span>
+		<span class='circle' id='full'></span>
+	</div>
+	<!-- More code can go just below this line -->
+	<code>&lt;style&gt;</code>
+	<code>&lt;/style&gt;</code>
+	<code></code>
+	<code>&lt;div class='outter-box'&gt;</code>
+	<code class='in-one'>&lt;div class='top-bar'&gt;</code>
+	<code class='in-two'>&lt;span class='circle' id='exit'&gt;&lt;/span></code>
+	<code class='in-two'>&lt;span class='circle' id='mini'&gt;&lt;/span></code>
+	<code class='in-two'>&lt;span class='circle' id='full'&gt;&lt;/span></code>
+	<code class='in-one'>&lt;/div&gt;</code>
+	<code>&lt;/div&gt;</code>
+</div>
