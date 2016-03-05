@@ -4,7 +4,8 @@ import java.util.Random;
 import java.awt.*;
 
 class ShortestEuclideanDistance {
-	static int MAX_COUNT_POINTS = 100000;
+	// THIS WILL TAKE A WHILE AND ALWAYS APPROACH 1 UNTIL WE ADD FLOATS
+	static int MAX_COUNT_POINTS = 1000;
 	
 	public static void main(String[] args) {
 		double delta;
@@ -51,8 +52,8 @@ class ShortestEuclideanDistance {
 		for(int i=1;i<MAX_COUNT_POINTS;i++) {
 			
 			do {
-				x = rand.nextInt(100);
-				y = rand.nextInt(100);
+				x = rand.nextInt((int)Math.ceil(Math.pow(MAX_COUNT_POINTS,1.5)));
+				y = rand.nextInt((int)Math.ceil(Math.pow(MAX_COUNT_POINTS,1.5)));
 				for (int j=0;j<xCoords.size();j++) {
 					if (x == xCoords.get(j) && y == yCoords.get(j))
 						foundCopy = true;

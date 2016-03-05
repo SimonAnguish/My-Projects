@@ -43,6 +43,29 @@ code {
 	margin: .5em;
 }
 
+code > a {
+	color: #E1E6DA;
+	font-family: "Menlo-Regular";
+	font-size: 1em;
+	margin: .5em;
+}
+
+.cursor {
+	color: #E1E6DA;
+	font-family: "Menlo-Regular";
+	font-size: .75em;
+	margin: .25em;
+	animation-name: cursor_blink;
+	animation-duration: .6s;
+	animation-iteration-count: infinite;
+	
+}
+
+@keyframes cursor_blink {
+	from {color: #E1E6DA;}
+	to {color: #0D1B2B;}
+}
+
 code:after {
 	content: "\a";
 	white-space: pre;
@@ -72,6 +95,8 @@ code:after {
 	<code class='in-two'>&lt;span class='circle' id='exit'&gt;&lt;/span></code>
 	<code class='in-two'>&lt;span class='circle' id='mini'&gt;&lt;/span></code>
 	<code class='in-two'>&lt;span class='circle' id='full'&gt;&lt;/span></code>
+	<code class='in-two'><a href="">Test</a></code>
 	<code class='in-one'>&lt;/div&gt;</code>
 	<code>&lt;/div&gt;</code>
+	<span class='cursor'>|</span>
 </div>
