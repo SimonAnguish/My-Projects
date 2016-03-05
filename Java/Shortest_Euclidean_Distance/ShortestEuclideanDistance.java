@@ -1,20 +1,23 @@
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Comparator;
 import java.awt.*;
 // I KNOW THIS ISN'T OPTIMIZED YET
 // I'M WORKING ON IT
 // -SIMON
 
 class ShortestEuclideanDistance {
-	static int MAX_COUNT_POINTS = 10000;
+	static int MAX_COUNT_POINTS = 50;
 	
 	public static void main(String[] args) {
 		// Generate the random point array
 		int pointArray[][] = buildRandomPointArray();
 		
 		// Display the answer
-		System.out.println("Delta: " + ShortestEuclideanDistance(pointArray));
+		System.out.println("Delta (Brute Force): " + ShortestEuclideanDistanceBruteForce(pointArray));
+		System.out.println("Delta (Optimal): " + ShortestEuclideanDistance(pointArray));
 	}
 	
 	 public static int[][] buildRandomPointArray() {
@@ -64,7 +67,7 @@ class ShortestEuclideanDistance {
 		return Math.sqrt(Math.pow(Math.abs(p1[0] - p2[0]),2) + Math.pow(Math.abs(p1[1] - p2[1]),2));
 	}
 	
-	public static double ShortestEuclideanDistance(int pointArray[][]) {
+	public static double ShortestEuclideanDistanceBruteForce(int pointArray[][]) {
 		// Initialize:
 		// Delta is the minimum distance found
 		// new_distance is the current distance to test
@@ -87,6 +90,56 @@ class ShortestEuclideanDistance {
 		}
 		
 		// Return the smallest distance found
+		return delta;
+	}
+	
+	public static double ShortestEuclideanDistance(int points[][]) {
+		if (points.length <= 3) {
+			return ShortestEuclideanDistanceBruteForce(points);
+		}
+		
+		int firstHalf = (int) Math.ceil(points.length/2);
+		int secondHalf = points.length - firstHalf;
+		double partitionLine;
+		int partitionOne[][] = new int[firstHalf][2];
+		int partitionTwo[][] = new int[secondHalf][2];
+		int partitionDelta[][] = new int[points.length][2];
+		int delta_counter = 0;
+		
+		// Compute separation line L such that half the points are on one side and half on the other side.
+		// L is between firstHalf and secondHalf
+		// Sort
+		Arrays.sort(points, new Comparator<int[]>() {
+			public int compare(int[] a, int[] b) {
+				return Integer.compare(a[0], b[0]);
+			}
+		});
+		
+		partitionLine = (double) (points[firstHalf][0] + points[firstHalf+1][0]) / 2;
+		
+		for (int i=0;i<points.length;i++) {
+			if (i < firstHalf) {
+				partitionOne[i][0] = points[i][0];
+				partitionOne[i][1] = points[i][1];
+			} else {
+				partitionTwo[i-firstHalf][0] = points[i][0];
+				partitionTwo[i-firstHalf][1] = points[i][1];
+				
+			}
+		}
+		
+		double shortestLengthLeft = ShortestEuclideanDistance(partitionOne);
+		double shortestLengthRight = ShortestEuclideanDistance(partitionTwo);
+		
+		double delta = Math.min(shortestLengthLeft, shortestLengthRight);
+		
+		for (int i=0;i<points.length;i++) {
+			if (Math.abs(points[i][0] - partitionLine) < delta) {
+				partitionDelta[delta_counter][0] = points[i][0];
+				partitionDelta[delta_counter][1] = points[i][1];
+			}
+		}
+		
 		return delta;
 	}
 }
