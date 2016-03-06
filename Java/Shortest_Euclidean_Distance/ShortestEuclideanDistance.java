@@ -1,23 +1,30 @@
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Comparator;
 import java.awt.*;
-// I KNOW THIS ISN'T OPTIMIZED YET
-// I'M WORKING ON IT
-// -SIMON
+// Optimized now
+// -Simon
 
 class ShortestEuclideanDistance {
-	static int MAX_COUNT_POINTS = 50;
+	static int MAX_COUNT_POINTS = 10000;
 	
 	public static void main(String[] args) {
 		// Generate the random point array
 		int pointArray[][] = buildRandomPointArray();
 		
 		// Display the answer
+		long startTime = System.currentTimeMillis();
 		System.out.println("Delta (Brute Force): " + ShortestEuclideanDistanceBruteForce(pointArray));
+		long endTime = System.currentTimeMillis();
+		System.out.println("Run Time (ms): " + (endTime - startTime) + "\n");
+		
+		startTime = System.currentTimeMillis();
 		System.out.println("Delta (Optimal): " + ShortestEuclideanDistance(pointArray));
+		endTime = System.currentTimeMillis();
+		System.out.println("Run Time (ms): " + (endTime - startTime) + "\n");
 	}
 	
 	 public static int[][] buildRandomPointArray() {
@@ -101,9 +108,10 @@ class ShortestEuclideanDistance {
 		int firstHalf = (int) Math.ceil(points.length/2);
 		int secondHalf = points.length - firstHalf;
 		double partitionLine;
+//		double newDistance;
 		int partitionOne[][] = new int[firstHalf][2];
 		int partitionTwo[][] = new int[secondHalf][2];
-		int partitionDelta[][] = new int[points.length][2];
+		ArrayList<int[]> partitionDelta = new ArrayList<int[]>();
 		int delta_counter = 0;
 		
 		// Compute separation line L such that half the points are on one side and half on the other side.
@@ -135,8 +143,33 @@ class ShortestEuclideanDistance {
 		
 		for (int i=0;i<points.length;i++) {
 			if (Math.abs(points[i][0] - partitionLine) < delta) {
-				partitionDelta[delta_counter][0] = points[i][0];
-				partitionDelta[delta_counter][1] = points[i][1];
+				int tempCoords[] = {points[i][0], points[i][1]};
+				partitionDelta.add(delta_counter, tempCoords);
+				delta_counter++;
+			}
+		}
+		
+		// Sort by y
+		Collections.sort(partitionDelta, new Comparator<int[]>() {
+			public int compare(int[] a, int[] b) {
+				return Integer.compare(a[1], b[1]);
+			}
+		});
+		
+		int goTo;
+		
+		if (partitionDelta.size() < 12) {
+			goTo = partitionDelta.size();
+		} else {
+			goTo = 12;
+		}
+		
+		// Calculate distance for the nearest 11
+		for (int i=0;i<partitionDelta.size()-goTo;i++) {
+			for (int j=1;j<goTo;j++) {
+				double newDistance = calculateDistance(partitionDelta.get(i), partitionDelta.get(i+j));
+				if (newDistance < delta)
+					delta = newDistance;
 			}
 		}
 		
