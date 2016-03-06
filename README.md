@@ -6,3 +6,4 @@ Hi! I just made this repo recently, so there isn't much here yet. A short list o
 ### Java
 * [Arena](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Arena "Arena")
 * [Shortest Euclidean Distance (Optimized)](https://github.com/SimonAnguish/My-Projects/blob/master/Java/Shortest_Euclidean_Distance/ShortestEuclideanDistance.java "Shortest Euclidean Distance")
+* [Sudoku Solver](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Sudoku_Solver/SudokuSolver.java "Sudoku Solver")
