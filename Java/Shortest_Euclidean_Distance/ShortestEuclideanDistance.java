@@ -10,21 +10,40 @@ import java.awt.*;
 
 class ShortestEuclideanDistance {
 	static int MAX_COUNT_POINTS = 10000;
+	static int RUN_COUNT = 100;
+	static int NODE_PROXIMITY_LIMIT = 12;
 	
 	public static void main(String[] args) {
 		// Generate the random point array
 		int pointArray[][] = buildRandomPointArray();
+		long startTime;
+		long endTime;
+		long runtimeTotal = 0;
+		long runtimeAvg;
 		
 		// Display the answer
-		long startTime = System.currentTimeMillis();
-		System.out.println("Delta (Brute Force): " + ShortestEuclideanDistanceBruteForce(pointArray));
-		long endTime = System.currentTimeMillis();
-		System.out.println("Run Time (ms): " + (endTime - startTime) + "\n");
+		for (int i=0;i<RUN_COUNT;i++) {
+			startTime = System.currentTimeMillis();
+			System.out.printf("Delta (Brute Force): %.5f\n",ShortestEuclideanDistanceBruteForce(pointArray));
+			endTime = System.currentTimeMillis();
+			runtimeTotal += endTime-startTime;
+			pointArray = buildRandomPointArray();
+		}
 		
-		startTime = System.currentTimeMillis();
-		System.out.println("Delta (Optimal): " + ShortestEuclideanDistance(pointArray));
-		endTime = System.currentTimeMillis();
-		System.out.println("Run Time (ms): " + (endTime - startTime) + "\n");
+		runtimeAvg = runtimeTotal/RUN_COUNT;
+		runtimeTotal = 0;
+		System.out.println("Run Time after " + RUN_COUNT + " runs (ms): " + runtimeAvg + "\n");
+		
+		for (int i=0;i<RUN_COUNT;i++) {
+			startTime = System.currentTimeMillis();
+			System.out.printf("Delta (Optimal): %.5f\n",ShortestEuclideanDistance(pointArray));
+			endTime = System.currentTimeMillis();
+			runtimeTotal += endTime-startTime;
+			pointArray = buildRandomPointArray();
+		}
+		
+		runtimeAvg = runtimeTotal/RUN_COUNT;
+		System.out.println("Run Time after " + RUN_COUNT + " runs (ms): " + runtimeAvg + "\n");
 	}
 	
 	 public static int[][] buildRandomPointArray() {
@@ -158,10 +177,10 @@ class ShortestEuclideanDistance {
 		
 		int goTo;
 		
-		if (partitionDelta.size() < 12) {
+		if (partitionDelta.size() < NODE_PROXIMITY_LIMIT) {
 			goTo = partitionDelta.size();
 		} else {
-			goTo = 12;
+			goTo = NODE_PROXIMITY_LIMIT;
 		}
 		
 		// Calculate distance for the nearest 11
