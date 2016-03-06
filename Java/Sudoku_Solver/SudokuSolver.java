@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class SudokuSolver {
 	public static void main(String[] args) {
 		System.out.printf("The solution to the puzzle is: \n\n");
@@ -25,16 +27,16 @@ class SudokuSolver {
 	public static int[][] SolvePuzzle(int grid[][]) {
 		// Possible Solutions in a 9x9 grid
 		int ps[][][] = new int[9][9][9];
+		int row_find_count = 0;
+		ArrayList<Integer> rowFinds = new ArrayList<Integer>();
 		
 		for (int i=0;i<ps.length;i++) {
 			for (int j=0;j<ps[0].length;j++) {
-				if (grid[i][j] == 0) {
-//					for (int k=1;k<=9;k++) {
-//						if (k )
-//					}
-					grid[i][j] = 9;
+				if (grid[i][j] != 0) {
+					rowFinds.add(row_find_count++,grid[i][j]);
 				}
 			}
+			row_find_count = 0;
 		}
 		
 		return grid;
