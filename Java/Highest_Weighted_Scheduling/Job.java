@@ -32,4 +32,8 @@ public class Job {
 		int hours = (int) (end-end%1);
 		return hours + ":" + minutes;
 	}
+	
+	public String toString() {
+		return "Start Time: " + this.getStartAsTime() + "\tEnd Time: " + this.getEndAsTime() + "\t Weight: " + this.getWeight();
+	}
 }
