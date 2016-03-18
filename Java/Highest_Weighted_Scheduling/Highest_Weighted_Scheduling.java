@@ -11,12 +11,11 @@ class Highest_Weighted_Scheduling {
 	public static Schedule buildSchedule() {
 		Schedule s = new Schedule();
 		
-		s.addJob(new Job(9, 1.0, 1.2));
-		s.addJob(new Job(1, 1.3, 7.9));
-		s.addJob(new Job(2, 1.45,6.08));
-		s.addJob(new Job(2, 7.3, 9.0));
-		s.addJob(new Job(2, 4.06,4.08));
-		s.addJob(new Job(2, 1.5,2.08));
+		s.addJob(new Job(3, 0.0, 3.0));
+		s.addJob(new Job(1, 2.0, 5.0));
+		s.addJob(new Job(2, 4.0, 7.0));
+		s.addJob(new Job(6, 6.0, 9.0));
+		s.addJob(new Job(4, 8.0, 11.0));
 		
 		return s;
 	}
@@ -39,22 +38,11 @@ class Highest_Weighted_Scheduling {
 //		int p[] = new int[s.size()];
 		for (int i=0;i<s.size();i++) {
 			p[i] = p(i);
-			System.out.printf("i: %d\tp(i): %d\n", i, p[i]);
+//			System.out.printf("i: %d\tp(i): %d\n", i, p[i]);
 		}
 		
-		// Opt[]
-//		int m[] = new int[s.size()];
-		for (int i=0;i<m.length;i++) {
-			m[i] = -2;
-		}
-		
-		m[0] = -1;
-		
-		int max = Compute_Opt(s.size() - 1);
-		System.out.println(max);
-		for (int v: m) {
-			System.out.println(v);
-		}
+		int max = Compute_Opt();
+		System.out.printf("Highest weight value: %d\n", max);
 	}
 	
 	private static int max(int i, int j) {
@@ -63,12 +51,17 @@ class Highest_Weighted_Scheduling {
 		else return i;
 	}
 	
-	private static int Compute_Opt(int j) {
-		if (m[j] == -2) {
-			
-			m[j] = max(s.getJob(j).getWeight() + Compute_Opt(p[j]), Compute_Opt(j-1));
+	private static int Compute_Opt() {
+		m[0] = s.getJob(0).getWeight();
+		int val = 0;
+		int max = 0;
+		for (int j=1;j<s.size();j++) {
+			if (p[j] == -1) val = 0;
+			else val = m[p[j]];
+			m[j] = max(s.getJob(j).getWeight() + val, m[j-1]);
+			max = j;
 		}
 		
-		return m[j];
+		return m[max];
 	}
 }

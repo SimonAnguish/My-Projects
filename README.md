@@ -7,3 +7,4 @@ Hi! I just made this repo recently, so there isn't much here yet. A short list o
 * [Arena](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Arena "Arena")
 * [Shortest Euclidean Distance (Optimized)](https://github.com/SimonAnguish/My-Projects/blob/master/Java/Shortest_Euclidean_Distance/ShortestEuclideanDistance.java "Shortest Euclidean Distance")
 * [Sudoku Solver](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Sudoku_Solver "Sudoku Solver")
+* [Highest Weighted Scheduling](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Highest_Weighted_Scheduling "Highest Weighted Scheduling")
