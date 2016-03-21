@@ -28,7 +28,7 @@ class Knapsack {
 	
 	/*
 		Calculates with items we should steal
-		@return - Sack: The full sack we have after stealing everything
+		@return - int: Value of the knapsack after stealing
 	*/
 	public static int Knapsack_A(int w, int j) {
 		if (j == 0) return 0;
