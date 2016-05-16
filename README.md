@@ -10,3 +10,4 @@ Hi! I just made this repo recently, so there isn't much here yet. A short list o
 * [Highest Weighted Scheduling](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Highest_Weighted_Scheduling "Highest Weighted Scheduling")
 * [Knapsack Algorithm](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Knapsack/Knapsack.java "Knapsack Algorithm")
 * [First Nonrepeating Character](https://github.com/SimonAnguish/My-Projects/tree/master/Java/First_Nonrepeating_Character/First_Nonrepeating_Character.java "Find the first nonrepeating character in a string")
+* [Elise](https://github.com/SimonAnguish/My-Projects/tree/master/Java/Elise/ "Project Elise")
