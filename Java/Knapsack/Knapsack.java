@@ -2,7 +2,7 @@ import java.util.*;
 
 class Knapsack {
 //	static int ITEM_COUNT = 5;
-	public static int TENSILE_STRENGTH = 10;
+	public static int TENSILE_STRENGTH = 11;
 	
 	public static Sack ks = new Sack();
 	public static House h = new House();
