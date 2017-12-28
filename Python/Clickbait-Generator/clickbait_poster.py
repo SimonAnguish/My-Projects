@@ -8,7 +8,7 @@ def makeTitle():
 	f = urllib.urlopen(link)
 	myfile = f.read()
 	firstPart = myfile.split('<title>', 1)[1]
-	cbSubject = firstPart.split(' - Wikipedia, the free encyclopedia</title>', 1)[0]
+	cbSubject = firstPart.split(' - Wikipedia</title>', 1)[0]
 	return cbSubject
 
 def makeRand(max=26):
